@@ -11,11 +11,11 @@
 ;General
 
   ;Name and file
-  Name "Cryptoservice41"
-  OutFile "installer_for_client.exe"
+  Name "service"
+  OutFile "installer.exe"
 
 VIProductVersion "1.0.0.0"
-VIAddVersionKey "LegalCopyright" "Pavel Bilyk, JSC Belarusbank, 2018"
+VIAddVersionKey "LegalCopyright" "Pavel, 2018"
 
 
   ;Default installation folder
@@ -37,8 +37,8 @@ InstallDir $R0
 
 ;--------------------------------
 ;Pages
- !define MUI_WELCOMEPAGE_TEXT "Для продолжения, нажмите Далее."
- !define MUI_WELCOMEPAGE_TITLE "Установка Cryptoservice41"
+ !define MUI_WELCOMEPAGE_TEXT "service"
+ !define MUI_WELCOMEPAGE_TITLE "service"
  !define MUI_WELCOMEFINISHPAGE_BITMAP "arrow.bmp"
  !define MUI_COMPONENTSPAGE_CHECKBITMAP "modern.bmp"
 
@@ -61,68 +61,68 @@ InstallDir $R0
 ;Installer Sections
 
 
-Section /o "Cryptoservice41 на C:" Section1
+Section /o "service C:" Section1
 
- ;убиваем процессы
+ 
 SetOutPath $PLUGINSDIR
 
 File /r crypto.bat
 nsExec::Exec '"$SYSDIR\cmd.exe" /c if 1==1 "$PLUGINSDIR\crypto.bat"'
 Pop $0
- ;удаляем папку
 
- RMDir /r "$R0\CryptoServiceASB"
-Delete "$SMSTARTUP\CryptoService34.exe.lnk"
+
+ RMDir /r "$R0\serviceB"
+Delete "$SMSTARTUP\service.exe.lnk"
 Delete "$SMSTARTUP\ssf_server.lnk"
 
- ;копируем файлы
+ ;ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГґГ Г©Г«Г»
 	 SetOutPath $R0\
 	 
-	   File /r CryptoServiceASB
-;создаем ярлыки	   
+	   File /r service
+;Г±Г®Г§Г¤Г ГҐГ¬ ГїГ°Г«Г»ГЄГЁ	   
 
-   createShortCut "$SMSTARTUP\CryptoService_41.lnk" "$R0\CryptoServiceASB\CryptoService_41.exe" ""
-  createShortCut "$SMSTARTUP\ssf_server2.lnk" "$R0\CryptoServiceASB\CbWEBCrypt\ssf_server2.exe" ""
+   createShortCut "$SMSTARTUP\CryptoService_41.lnk" "$R0\service\service.exe" ""
+  createShortCut "$SMSTARTUP\ssf_server2.lnk" "$R0\service\CbWEBCrypt\ssf_server2.exe" ""
 	   
-;запускаем exe
+;Г§Г ГЇГіГ±ГЄГ ГҐГ¬ exe
 
 	     Exec '"$R0\CryptoServiceASB\CbWEBCrypt\ssf_server2.exe"'
-		 Exec '"$R0\CryptoServiceASB\CryptoService_41.exe"'
+		 Exec '"$R0\service\service_41.exe"'
 	   
 SectionEnd ; end the section
 
-Section /o "Cryptoservice41 на D:" Section2
- ;убиваем процессы
+Section /o "service D:" Section2
+ ;ГіГЎГЁГўГ ГҐГ¬ ГЇГ°Г®Г¶ГҐГ±Г±Г»
 SetOutPath $PLUGINSDIR
 
 File /r crypto.bat
 nsExec::Exec '"$SYSDIR\cmd.exe" /c if 1==1 "$PLUGINSDIR\crypto.bat"'
 Pop $0
- ;удаляем папку
-RMDir /r "D:\CryptoServiceASB"
-Delete "$SMSTARTUP\CryptoService34.exe.lnk"
+ ;ГіГ¤Г Г«ГїГҐГ¬ ГЇГ ГЇГЄГі
+RMDir /r "D:\service"
+Delete "$SMSTARTUP\service.exe.lnk"
 Delete "$SMSTARTUP\ssf_server.lnk"
 
- ;копируем файлы
+ ;ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГґГ Г©Г«Г»
 	 SetOutPath D:\
 	 
-	   File /r CryptoServiceASB
-;создаем ярлыки	   
+	   File /r service
+;Г±Г®Г§Г¤Г ГҐГ¬ ГїГ°Г«Г»ГЄГЁ	   
 
-   createShortCut "$SMSTARTUP\CryptoService_41.lnk" "D:\CryptoServiceASB\CryptoService_41.exe" ""
-  createShortCut "$SMSTARTUP\ssf_server2.lnk" "D:\CryptoServiceASB\CbWEBCrypt\ssf_server2.exe" ""
+   createShortCut "$SMSTARTUP\service.lnk" "D:\service\service.exe" ""
+  createShortCut "$SMSTARTUP\ssf_server2.lnk" "D:\service\CbWEBCrypt\ssf_server2.exe" ""
 	   
-;запускаем exe
+;Г§Г ГЇГіГ±ГЄГ ГҐГ¬ exe
 
-	     Exec '"D:\CryptoServiceASB\CbWEBCrypt\ssf_server2.exe"'
-		 Exec '"D:\CryptoServiceASB\CryptoService_41.exe"'
+	     Exec '"D:\service\CbWEBCrypt\ssf_server2.exe"'
+		 Exec '"D:\service\service.exe"'
 		 
 		 
  
 SectionEnd ; end the section
 
-LangString DESC_Section1 ${LANG_RUSSIAN} "Установка Cryptoservice41 на диск C:"
-LangString DESC_Section2 ${LANG_RUSSIAN} "Установка Cryptoservice41 на диск D:"
+LangString DESC_Section1 ${LANG_RUSSIAN} "Г“Г±ГІГ Г­Г®ГўГЄГ  service Г­Г  Г¤ГЁГ±ГЄ C:"
+LangString DESC_Section2 ${LANG_RUSSIAN} "Г“Г±ГІГ Г­Г®ГўГЄГ  service Г­Г  Г¤ГЁГ±ГЄ D:"
 
   ;Assign language strings to sections
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
